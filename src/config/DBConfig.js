@@ -7,7 +7,7 @@ const dbConfig = {
 const connectDB = async () => {
     try {
         await mongoose.connect(dbConfig.url, {useNewUrlParser: true, useUnifiedTopology: true});
-        console.log('MongoDB connected');
+        console.log('MongoDB Connected...!');
     } catch (error) {
         console.error('MongoDB connection error:', error.message);
         process.exit(1);
