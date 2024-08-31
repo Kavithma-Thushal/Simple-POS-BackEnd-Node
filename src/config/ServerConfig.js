@@ -1,5 +1,5 @@
 const config = {
-    appName: "Simple-POS-BackEnd-Node",
+    appName: "Application",
     port: process.env.PORT || 8080,
 };
 

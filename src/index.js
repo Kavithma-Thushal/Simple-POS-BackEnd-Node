@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const connectDB = require("./config/DBConfig");
-const transporter = require("./config/EmailConfig");
+const dbConfig = require("./config/DBConfig");
+const emailConfig = require("./config/EmailConfig");
 const serverConfig = require("./config/ServerConfig");
 
 const app = express();
@@ -10,8 +10,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Connect to Database
-connectDB();
+// Connect to DB
+dbConfig();
 
 // Start Server
 app.listen(serverConfig.port, () => {
