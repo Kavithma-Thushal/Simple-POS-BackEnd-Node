@@ -5,6 +5,6 @@ const orderDetailsSchema = new mongoose.Schema({
     itemCode: {type: String, ref: 'Item', required: true},
     buyQty: {type: Number, required: true},
     total: {type: Number, required: true}
-});
+}, {versionKey: false});
 
 module.exports = mongoose.model('OrderDetails', orderDetailsSchema);
