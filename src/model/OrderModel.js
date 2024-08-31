@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    id: {type: String, required: true, unique: true},
-    customer: {type: String, ref: 'Customer', required: true},
+    orderId: {type: String, required: true, unique: true},
+    customerId: {type: String, ref: 'Customer', required: true},
     orderDetailsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'OrderDetails'}]
 });
 
