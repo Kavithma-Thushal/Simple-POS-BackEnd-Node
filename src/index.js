@@ -1,11 +1,19 @@
-const {connectDB} = require('./config/DBConfig');
-const app = require('./config/ServerConfig');
+const express = require("express");
+const bodyParser = require("body-parser");
+const connectDB = require("./config/DBConfig");
+const transporter = require("./config/EmailConfig");
+const serverConfig = require("./config/ServerConfig");
 
-// Connect to MongoDB
+const app = express();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+// Connect to Database
 connectDB();
 
-// Start the server
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`);
+// Start Server
+app.listen(serverConfig.port, () => {
+    console.log(`${serverConfig.appName} is running on port ${serverConfig.port}`);
 });

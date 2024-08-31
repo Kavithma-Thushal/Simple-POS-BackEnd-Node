@@ -1,16 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const config = {
+    appName: "Simple-POS-BackEnd-Node",
+    port: process.env.PORT || 8080,
+};
 
-const app = express();
-
-// Middleware setup
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.get('/', (req, res) => {
-    res.send('Hello, world!');
-});
-
-module.exports = app;
+module.exports = config;

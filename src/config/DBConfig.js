@@ -1,17 +1,23 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const dbConfig = {
-    url: 'mongodb://localhost:27017/demo'
+    uri: "mongodb://localhost:27017/demo",
+    options: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    },
 };
+
+mongoose.set('debug', true);
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(dbConfig.url, {useNewUrlParser: true, useUnifiedTopology: true});
-        console.log('MongoDB Connected...!');
+        await mongoose.connect(dbConfig.uri, dbConfig.options);
+        console.log("Connected to MongoDB Successfully...!");
     } catch (error) {
-        console.error('MongoDB connection error:', error.message);
+        console.error("Error connecting to MongoDB:", error);
         process.exit(1);
     }
 };
 
-module.exports = {connectDB};
+module.exports = connectDB;
