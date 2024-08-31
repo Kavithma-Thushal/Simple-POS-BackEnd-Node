@@ -2,7 +2,7 @@
 
 The Simple POS BackEnd is a robust and efficient backend system designed to support a Point of Sale (POS) application.
 Built with Node.js and the Express.js framework, this backend provides essential functionalities for managing customers,
-item details, and order processing.
+item details, and order processing
 
 ## 🛠️ Tech Stack
 
