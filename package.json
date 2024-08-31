@@ -2,7 +2,7 @@
   "name": "simple-pos-backend-node",
   "version": "1.0.0",
   "author": "Kavithma Thushal",
-  "license": "GNU",
+  "license": "LGPL-3.0-only",
   "private": true,
   "main": "index.js",
   "description": "Simple POS Application BackEnd Implemented Using Node.js, Express.js, and MongoDB",
