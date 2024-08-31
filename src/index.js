@@ -1,19 +1,20 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const dbConfig = require("./config/DBConfig");
-const emailConfig = require("./config/EmailConfig");
-const serverConfig = require("./config/ServerConfig");
+const cors = require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
+const port = process.env.PORT || 8080;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
-// Connect to DB
-dbConfig();
+// MongoDB Connection
+mongoose.connect("mongodb://localhost:27017/demo", {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log('MongoDB Connected Successfully...!'))
+    .catch(err => console.error('MongoDB Connection Error...! : ', err));
 
-// Start Server
-app.listen(serverConfig.port, () => {
-    console.log(`${serverConfig.appName} is running on port ${serverConfig.port}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
