@@ -1,6 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
+const handleRuntimeError = require('../src/util/ResponseHandler');
 
 const customerRoute = require('./route/CustomerRoute');
 const itemRoute = require('./route/ItemRoute');
@@ -18,11 +19,14 @@ app.use('/api/v1/customer', customerRoute);
 app.use('/api/v1/item', itemRoute);
 app.use('/api/v1/order', orderRoute);
 
+app.use(handleRuntimeError);
+
 // DB Connection
 mongoose.connect("mongodb://localhost:27017/demo", {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => console.log('MongoDB Connected Successfully...!'))
-    .catch(err => console.error('MongoDB Connection Error...! : ', err));
+    .then(() => console.log('\u001B[32mMongoDB Connected Successfully...!\u001B[0m'))
+    .catch(err => console.error('\u001B[31mMongoDB Connection Error: \u001B[0m', err));
 
+// Start server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`\u001B[34mServer is running on port ${port}\u001B[0m`);
 });
