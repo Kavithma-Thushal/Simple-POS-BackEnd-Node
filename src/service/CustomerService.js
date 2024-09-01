@@ -1,19 +1,19 @@
-const Customer = require('../model/CustomerModel');
 const responseUtil = require('../util/ResponseUtil');
+const customerModel = require('../model/CustomerModel');
 
 const saveCustomer = async (customerDTO) => {
-    const existingCustomer = await Customer.findOne({id: customerDTO.id});
+    const existingCustomer = await customerModel.findOne({id: customerDTO.id});
     if (existingCustomer) {
         return responseUtil('Duplicate Customer Id: ' + customerDTO.id, 400);
     }
 
-    const customer = new Customer(customerDTO);
+    const customer = new customerModel(customerDTO);
     await customer.save();
     return responseUtil('Customer Saved Successfully...!', 201);
 };
 
 const searchCustomer = async (id) => {
-    const customer = await Customer.findOne({id});
+    const customer = await customerModel.findOne({id});
     if (!customer) {
         return responseUtil('Customer Not Found: ' + id, 404);
     }
@@ -21,7 +21,7 @@ const searchCustomer = async (id) => {
 };
 
 const updateCustomer = async (customerDTO) => {
-    const customer = await Customer.findOneAndUpdate({id: customerDTO.id}, customerDTO, {new: true});
+    const customer = await customerModel.findOneAndUpdate({id: customerDTO.id}, customerDTO, {new: true});
     if (!customer) {
         return responseUtil('Customer Not Found: ' + customerDTO.id, 400);
     }
@@ -29,7 +29,7 @@ const updateCustomer = async (customerDTO) => {
 };
 
 const deleteCustomer = async (id) => {
-    const customer = await Customer.findOneAndDelete({id});
+    const customer = await customerModel.findOneAndDelete({id});
     if (!customer) {
         return responseUtil('Customer Not Found: ' + id, 404);
     }
@@ -37,7 +37,7 @@ const deleteCustomer = async (id) => {
 };
 
 const loadAllCustomers = async () => {
-    const customers = await Customer.find();
+    const customers = await customerModel.find();
     if (customers.length === 0) {
         return responseUtil('No Customers Found in DB', 204);
     }
@@ -45,13 +45,13 @@ const loadAllCustomers = async () => {
 };
 
 const generateCustomerId = async () => {
-    const lastCustomer = await Customer.findOne().sort({_id: -1}).limit(1);
+    const lastCustomer = await customerModel.findOne().sort({_id: -1}).limit(1);
     const lastId = lastCustomer ? lastCustomer.id : 'C00-000';
     return responseUtil('Last Customer ID Retrieved Successfully...!', 200, lastId);
 };
 
 const getCustomerCount = async () => {
-    const customerCount = await Customer.countDocuments();
+    const customerCount = await customerModel.countDocuments();
     return responseUtil('Customer Count Retrieved Successfully...!', 200, customerCount);
 };
 

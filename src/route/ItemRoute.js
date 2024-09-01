@@ -1,13 +1,13 @@
 const express = require('express');
-const ItemController = require('../controller/ItemController');
 const router = express.Router();
+const itemController = require('../controller/ItemController');
 
-router.post('/saveItem', ItemController.saveItem);
-router.get('/searchItem/:code', ItemController.searchItem);
-router.put('/updateItem', ItemController.updateItem);
-router.delete('/deleteItem/:code', ItemController.deleteItem);
-router.get('/loadAllItems', ItemController.loadAllItems);
-router.get('/generateItemCode', ItemController.generateItemCode);
-router.get('/getItemCount', ItemController.getItemCount);
+router.post('/saveItem', itemController.saveItem);
+router.get('/searchItem/:code', itemController.searchItem);
+router.put('/updateItem', itemController.updateItem);
+router.delete('/deleteItem/:code', itemController.deleteItem);
+router.get('/loadAllItems', itemController.loadAllItems);
+router.get('/generateItemCode', itemController.generateItemCode);
+router.get('/getItemCount', itemController.getItemCount);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
-const customerController = require('../controller/CustomerController');
 const router = express.Router();
+const customerController = require('../controller/CustomerController');
 
 router.post('/saveCustomer', customerController.saveCustomer);
 router.get('/searchCustomer/:id', customerController.searchCustomer);

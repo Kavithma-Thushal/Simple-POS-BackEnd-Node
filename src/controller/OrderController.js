@@ -1,8 +1,8 @@
-const OrderService = require('../service/OrderService');
+const orderService = require('../service/OrderService');
 
 exports.placeOrder = async (req, res) => {
     try {
-        const response = await OrderService.placeOrder(req.body);
+        const response = await orderService.placeOrder(req.body);
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -11,7 +11,7 @@ exports.placeOrder = async (req, res) => {
 
 exports.generateOrderId = async (req, res) => {
     try {
-        const response = await OrderService.generateOrderId();
+        const response = await orderService.generateOrderId();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -20,7 +20,7 @@ exports.generateOrderId = async (req, res) => {
 
 exports.getOrderCount = async (req, res) => {
     try {
-        const response = await OrderService.getOrderCount();
+        const response = await orderService.getOrderCount();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -29,7 +29,7 @@ exports.getOrderCount = async (req, res) => {
 
 exports.loadOrderDetails = async (req, res) => {
     try {
-        const response = await OrderService.loadOrderDetails();
+        const response = await orderService.loadOrderDetails();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});

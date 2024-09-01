@@ -1,19 +1,19 @@
-const Item = require('../model/ItemModel');
 const responseUtil = require('../util/ResponseUtil');
+const itemModel = require('../model/ItemModel');
 
 const saveItem = async (itemDTO) => {
-    const existingItem = await Item.findOne({code: itemDTO.code});
+    const existingItem = await itemModel.findOne({code: itemDTO.code});
     if (existingItem) {
         return responseUtil('Duplicate Item Code: ' + itemDTO.code, 400);
     }
 
-    const item = new Item(itemDTO);
+    const item = new itemModel(itemDTO);
     await item.save();
     return responseUtil('Item Saved Successfully...!', 201);
 };
 
 const searchItem = async (code) => {
-    const item = await Item.findOne({code});
+    const item = await itemModel.findOne({code});
     if (!item) {
         return responseUtil('Item Not Found: ' + code, 404);
     }
@@ -21,7 +21,7 @@ const searchItem = async (code) => {
 };
 
 const updateItem = async (itemDTO) => {
-    const item = await Item.findOneAndUpdate({code: itemDTO.code}, itemDTO, {new: true});
+    const item = await itemModel.findOneAndUpdate({code: itemDTO.code}, itemDTO, {new: true});
     if (!item) {
         return responseUtil('Item Not Found: ' + itemDTO.code, 400);
     }
@@ -29,7 +29,7 @@ const updateItem = async (itemDTO) => {
 };
 
 const deleteItem = async (code) => {
-    const item = await Item.findOneAndDelete({code});
+    const item = await itemModel.findOneAndDelete({code});
     if (!item) {
         return responseUtil('Item Not Found: ' + code, 404);
     }
@@ -37,7 +37,7 @@ const deleteItem = async (code) => {
 };
 
 const loadAllItems = async () => {
-    const items = await Item.find();
+    const items = await itemModel.find();
     if (items.length === 0) {
         return responseUtil('No Items Found in DB', 204);
     }
@@ -45,13 +45,13 @@ const loadAllItems = async () => {
 };
 
 const generateItemCode = async () => {
-    const lastItem = await Item.findOne().sort({_id: -1}).limit(1);
+    const lastItem = await itemModel.findOne().sort({_id: -1}).limit(1);
     const lastCode = lastItem ? lastItem.code : 'I00-000';
     return responseUtil('Last Item Code Retrieved Successfully...!', 200, lastCode);
 };
 
 const getItemCount = async () => {
-    const itemCount = await Item.countDocuments();
+    const itemCount = await itemModel.countDocuments();
     return responseUtil('Item Count Retrieved Successfully...!', 200, itemCount);
 };
 

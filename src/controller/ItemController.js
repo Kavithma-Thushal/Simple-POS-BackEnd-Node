@@ -1,8 +1,8 @@
-const ItemService = require('../service/ItemService');
+const itemService = require('../service/ItemService');
 
 exports.saveItem = async (req, res) => {
     try {
-        const response = await ItemService.saveItem(req.body);
+        const response = await itemService.saveItem(req.body);
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -11,7 +11,7 @@ exports.saveItem = async (req, res) => {
 
 exports.searchItem = async (req, res) => {
     try {
-        const response = await ItemService.searchItem(req.params.code);
+        const response = await itemService.searchItem(req.params.code);
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -20,7 +20,7 @@ exports.searchItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
     try {
-        const response = await ItemService.updateItem(req.body);
+        const response = await itemService.updateItem(req.body);
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -29,7 +29,7 @@ exports.updateItem = async (req, res) => {
 
 exports.deleteItem = async (req, res) => {
     try {
-        const response = await ItemService.deleteItem(req.params.code);
+        const response = await itemService.deleteItem(req.params.code);
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -38,7 +38,7 @@ exports.deleteItem = async (req, res) => {
 
 exports.loadAllItems = async (req, res) => {
     try {
-        const response = await ItemService.loadAllItems();
+        const response = await itemService.loadAllItems();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -47,7 +47,7 @@ exports.loadAllItems = async (req, res) => {
 
 exports.generateItemCode = async (req, res) => {
     try {
-        const response = await ItemService.generateItemCode();
+        const response = await itemService.generateItemCode();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
@@ -56,7 +56,7 @@ exports.generateItemCode = async (req, res) => {
 
 exports.getItemCount = async (req, res) => {
     try {
-        const response = await ItemService.getItemCount();
+        const response = await itemService.getItemCount();
         res.status(response.status).send(response);
     } catch (error) {
         res.status(500).send({message: error.message});
